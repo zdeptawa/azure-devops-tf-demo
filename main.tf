@@ -6,6 +6,16 @@
 # Configure the Azure Provider
 provider "azurerm" {}
 
+# Set remote backend for terraform state
+terraform {
+  backend "azurerm" {
+    storage_account_name = "tfpipelinetest"
+    container_name       = "tfdemo"
+    key                  = "terraform.tfstate"
+    access_key            = "__access_key__"
+  }
+}
+
 # Create a resource group
 resource "azurerm_resource_group" "devops_demo_resource_group" {
   name     = "devops_demo_resource_group"
